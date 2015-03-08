@@ -22,7 +22,7 @@ function Mail(options) {
 
   this.name = options.name; 
   this.addr = options.address;
-  this.from = '847114929@qq.com';
+  this.from = '我的简历系统IONE<847114929@qq.com>';
   this.to = options.to || 'gfeng.peak@gmail.com';
   this.subject = "Hey, you handsome guy! I'm " + this.name + ", I'v seen your resume ~" + "\n" + "My email address is " + this.addr ;
   this.text = options.text || 'Holy shit, you lied to me ... ';
