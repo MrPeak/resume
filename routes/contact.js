@@ -21,7 +21,8 @@ exports.mail = function(req, res) {
   var callback = function(err, _res) {
     // Catch exceptions 
     if (err) {
-      return console.error(err);
+      _res.send(err);
+      return;
     }
 
 /*    // response.statusHandler only applies to 'direct' transport
