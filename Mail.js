@@ -22,7 +22,7 @@ function Mail(options) {
 
   this.name = options.name; 
   this.addr = options.address;
-  this.from = '我的简历系统IONE<847114929@qq.com>';
+  this.from = '我的简历系统<ione4ali@yahoo.com>';
   this.to = 'gfeng.peak@gmail.com';
   this.subject = "来自我的简历系统（" + this.addr + "）";
   this.text = options.text;
@@ -30,9 +30,10 @@ function Mail(options) {
   this.attachments = options.attachments;
 
   this.smtpTransport = mail.createTransport('SMTP', {
+    service: "Yahoo",
     auth: {
-      user: '847114929@qq.com',
-      pass: 'gf24556129'
+      user: "ione4ali@yahoo.com",//账户
+      pass: "helloione"//密码
     }
   });
 
