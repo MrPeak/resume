@@ -1,65 +1,15 @@
-/* 
- * @author      Mrpeak
- * @description Send email for myself
- * @depdence 'nodemailer'  http://www.nodemailer.com/
- */
+'use strict';
 
-var mail = require('nodemailer');
+var nodemailer = require('nodemailer');
 
-module.exports = Mail;
-
-/*
- * @constructor
- * @param {Object} options
- * @param {String} options.from   
- * @param {String} options.to   
- * @param {String} options.subject   
- * @param {String} options.text  
- * @param {String} options.html   
- * @param {String} [options.attachments]   
- */
-function Mail(options) {
-
-  this.name = options.name; 
-  this.addr = options.address;
-  this.from = '我的简历系统<ione4ali@yahoo.com>';
-  this.to = 'gfeng.peak@gmail.com';
-  this.subject = "来自我的简历系统（" + this.addr + "）";
-  this.text = options.text;
-  // this.html = options.message || '<p>Hello world</p>';
-  this.attachments = options.attachments;
-
-  this.smtpTransport = mail.createTransport('SMTP', {
-    service: "Yahoo",
+// Create a SMTP transporter object
+var transporter = nodemailer.createTransport({
+    service: 'Hotmail',
     auth: {
-      user: "ione4ali@yahoo.com",//账户
-      pass: "helloione"//密码
+        user: 'gfeng.peak@hotmail.com',
+        pass: 'gf24556129'
     }
-  });
+});
 
-  this.options = {
-    addr: this.address,
-    from: this.from,
-    to: this.to,
-    subject: this.subject,
-    text: this.text
-  };
-}
+module.exports = transporter;
 
-/**
- * @description email send method
- * @function
- * @param {Function} callback
- */
-Mail.prototype.send = function(callback) {
-  return this.smtpTransport.sendMail(this.options, callback);
-};
-
-
-/*
- * @description email close method
- * @function
- */
-Mail.prototype.close = function() {
-  return this.smtpTransport.close();
-};

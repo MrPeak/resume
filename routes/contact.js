@@ -2,7 +2,7 @@
  * GET contact listening
  */
 
-var Mail = require('../Mail.js');
+var transporter = require('../Mail.js');
 
 exports.index = function(req, res) {
   res.renderPjax("contact", {
@@ -15,36 +15,39 @@ exports.mail = function(req, res) {
   // Create an object to store req.body
   var options = Object.create(req.body);
 
-  // Create a mail instance
-  var mail = new Mail(options);
+  var message = {
 
-  var callback = function(err, _res) {
-    // Catch exceptions 
-    if (err) {
-      _res.send(err);
-      return;
-    }
+    // sender info
+    from: '我的简历<gfeng.peak@hotmail.com>',
 
-/*    // response.statusHandler only applies to 'direct' transport
-    _res.statusHandler.once("failed", function(data) {
-      console.log(
-        "Permanently failed delivering message to %s with the following response: %s",
-        data.domain, data.response);
-    });
+    // Comma separated list of recipients
+    to: '569052161@qq.com',
 
-    _res.statusHandler.once("requeue", function(data) {
-      console.log("Temporarily failed delivering message to %s", data.domain);
-    });
+    // Subject of the message
+    subject: '猎头' + options.name + '来访<' + options.address + '>', //
 
-    _res.statusHandler.once("sent", function(data) {
-      console.log("Message was accepted by %s", data.domain);
-    });*/
+    headers: {
+        'X-Laziness-level': 1000
+    },
 
-    // Feedback message to front-end
-    res.json(_res.message);
+    // plaintext body
+    text: options.text,
   };
 
-  mail.send(callback);
+  transporter.sendMail(message, function(error, info) {
+    if (error) {
+        console.log('Error occurred');
+        console.log(error.message);
+        res.status(503);
+        return;
+    }
+
+    console.log('Message sent successfully!');
+    console.log('Server responded with "%s"', info.response);
+    res.json({
+      status: 'success'
+    });
+  });
 };
 
 
