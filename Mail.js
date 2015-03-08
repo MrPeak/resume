@@ -56,6 +56,7 @@ Mail.prototype.send = function(callback) {
   return this.smtpTransport.sendMail(this.options, callback);
 };
 
+
 /*
  * @description email close method
  * @function
