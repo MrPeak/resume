@@ -2,7 +2,7 @@
  * GET contact listening
  */
 
-var Mail = require('../mail.js');
+var Mail = require('../Mail.js');
 
 exports.index = function(req, res) {
   res.renderPjax("contact", {
