@@ -1,0 +1,68 @@
+
+  <div class="person">
+    <span class="name">Contact Me</span>
+  </div>
+  <div class="desciption">
+   
+    <p>You can also contact me directly here. I'll be very honored.</p>
+  
+    <form action="#" method="post" id="form">
+      <div class="contact-form">
+        <div class="span6"> <input type="text" id="name" name="name" data-validation="required" placeholder="Your Name"></div>
+        <div class="span6"><input type="text" id="email" name="email" data-validation="email" placeholder="Ex: youremail@domain.com"></div>
+        <div class="row">
+          <div class="span12"><textarea placeholder="Message" id="message" name="message" rows="5" data-validation="required"></textarea></div>
+        </div>
+        
+        <div class="row" style="margin-bottom: -5px !important;margin-top: 12px !important;">
+          <input type="submit" id="submit" name="submit" class="submit" value="Send Message" />
+        </div>
+      </div>
+    </form>         
+    <div id="success">You e-mail has been sent.</div>
+    <div id="error">Unable to process your required, please try later.</div>
+  </div>  
+  <script src="js/jquery.form-validator.min.js"></script>
+  <script>
+    // contact
+    void function($) {
+      $(document).ready(function() {
+        $.validate({
+          form : '#form',
+          onError : function() {
+            // alert('Validation failed');
+          },
+          onSuccess : function() {
+            // event.preventDefault();
+            // cache dom object
+            var $btn = $('#submit');
+            var text = $btn.val();
+
+            $('#success, #error').hide();
+
+            $btn.val("I'm trying to send ...");
+
+            $.ajax({
+              url: '/mail',
+              type: 'POST',
+              dataType: 'json',
+              data: {address: $('#email').val(), name: $('#name').val(), text: $('#message').val()}
+            })
+            .done(function(json) {
+              console.log(json);
+              $('#success').show();
+            })
+            .fail(function() {
+              console.log("error");
+              $('#error').show();
+            })
+            .always(function() {
+              $btn.val(text);
+            });
+
+            return false;
+          }
+        });
+      });
+    }(jQuery);
+  </script>

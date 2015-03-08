@@ -1,0 +1,52 @@
+
+  <div class="person">
+    <span class="name">Follow Me</span>
+  </div>
+  <div class="desciption">
+   
+    <p>Thank you for coming along!</p>
+    <p>You can follow me on your favorite social network. You will not regret, I bet!</p>
+
+    <p>
+      <span class="social">
+        <a href="#" class="qq" title="Tencent QQ" data-content="My QQ number: 569052161">
+          <img src="img/qq.png" alt="QQ" style="width: 43px">
+        </a>
+        <a href="#" class="weibo" title="Weibo" data-content='<a href="http://weibo.com/mrpeak">Hey捻捻转儿</a>'>
+          <img src="img/weibo.png" alt="Weibo" style="width: 43px">
+        </a>
+        <a href="#" class="mail" title="Gmail"  data-content='<a href="mailto:gfeng.peak@gmail.com" target="_blank">gfeng.peak@gmail.com</a>'>
+          <img src="img/mail.png" alt="Gmail">
+        </a>
+        <a href="#" class="google" title="Google +" data-content="高峰(gfeng.peak@gmail.com)">
+          <img src="img/google.png" alt="Goolge plus" style="width: 47px">
+        </a>
+      </span>
+    </p>
+    <br>
+    <p>In addition, if you want to glance at my project</p>
+  
+    <p class="social">
+      <a href="#" class="github" title="GitHub" data-content='<a href="http://www.github.com/mrpeak">www.github.com/mrpeak</a>'><img src="img/github.png" alt="GitHub"></a>
+    </p>
+  </div>  
+  <script src="js/bootstrap-tooltip.js"></script>
+  <script src="js/bootstrap-popover.js"></script>
+  <script>
+    // follow
+    void function($) {
+      $(document).ready(function() {
+        $('a', 'span.social').popover({
+          placement: "bottom",
+          html: true
+        });
+
+        $('a', 'p.social').popover({
+          html: true
+        });
+
+      });
+    }(jQuery);
+  </script>
+
+

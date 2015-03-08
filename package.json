@@ -1,0 +1,15 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "^0.8.8",
+    "express": "3.0.6",
+    "express-partials": "^0.3.0",
+    "express-pjax": "0.0.1",
+    "nodemailer": "^0.6.5"
+  }
+}
