@@ -23,9 +23,9 @@ function Mail(options) {
   this.name = options.name; 
   this.addr = options.address;
   this.from = '我的简历系统IONE<847114929@qq.com>';
-  this.to = options.to || 'gfeng.peak@gmail.com';
-  this.subject = "Hey, you handsome guy! I'm " + this.name + ", I'v seen your resume ~" + "\n" + "My email address is " + this.addr ;
-  this.text = options.text || 'Holy shit, you lied to me ... ';
+  this.to = 'gfeng.peak@gmail.com';
+  this.subject = "来自我的简历系统（" + this.addr + "）";
+  this.text = options.text;
   // this.html = options.message || '<p>Hello world</p>';
   this.attachments = options.attachments;
 
@@ -41,9 +41,7 @@ function Mail(options) {
     from: this.from,
     to: this.to,
     subject: this.subject,
-    text: this.text,
-    // html: this.html,
-    attachments: this.attachments
+    text: this.text
   };
 }
 
